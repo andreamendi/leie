@@ -76,9 +76,9 @@ WSGI_APPLICATION = 'leie.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'leie',
-        'USER': 'root',
-        'PASSWORD': 'Mars24601@',
+        'NAME': 'leie_db',
+        'USER': 'mendi',
+        'PASSWORD': 'root',
         'HOST':'localhost',
         'PORT':''
     }
@@ -109,7 +109,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Mexico_City'
 
 USE_I18N = True
 
