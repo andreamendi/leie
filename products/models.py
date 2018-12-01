@@ -20,6 +20,7 @@ class Direction(models.Model):
 	neighborhood = models.CharField(max_length=100,null = False)
 	country = models.CharField(max_length=100,null = False)
 	state = models.CharField(max_length=100,null = False)
+	code_zip = models.IntegerField(default = 1,null = False)
 	user = models.ForeignKey(User, on_delete= models.CASCADE)
 
 	def __str__(self):
@@ -28,14 +29,14 @@ class Direction(models.Model):
 
 
 class RankingUser(models.Model):
-	owner = models.ForeignKey(UserProfile, related_name='owner', on_delete=models.CASCADE)
+	renter = models.ForeignKey(UserProfile, related_name='renter', on_delete=models.CASCADE)
 	lessor = models.ForeignKey(UserProfile, related_name='lessor', on_delete=models.CASCADE)
 	score = models.IntegerField(default = 1)
 	create_at = models.DateTimeField(auto_now_add=True) # Here we've the date when the user will create the product
 	modified_at = models.DateTimeField(auto_now=True) # Here we've the date when the user modify the product
 
 	def __str__(self):
-		return 'Owner: {}, Lessor: {}, score {}'.format(self.owner,self.lessor,self.score)
+		return 'renter: {}, Lessor: {}, score {}'.format(self.renter,self.lessor,self.score)
 
 
 class Category(models.Model):
@@ -78,7 +79,7 @@ class Card(models.Model):
 	user = models.ForeignKey(User, on_delete=models.CASCADE) #uno a muchos
 
 	def __str__(self):
-		return 'Fullname: {}, user: {}'.format(self.full_name,self.user)
+		return 'user: {}'.format(self.full_name,self.user)
 
 
 
@@ -92,4 +93,4 @@ class Rent(models.Model):
 	modified_at = models.DateTimeField(auto_now=True) #Here we've the date when th	te user modify the product
 	
 	def __str__(self):
-		return 'Renter: {}, Product: {}'.format(self.user,self.product)
+		return 'Owner: {}, Product: {}'.format(self.user,self.product)
