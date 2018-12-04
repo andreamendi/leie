@@ -79,7 +79,7 @@ class Card(models.Model):
 	user = models.ForeignKey(User, on_delete=models.CASCADE) #uno a muchos
 
 	def __str__(self):
-		return 'user: {}'.format(self.full_name,self.user)
+		return 'user: {}, full_name: {}'.format(self.full_name,self.user)
 
 
 

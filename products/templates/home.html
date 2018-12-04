@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %} Home {% endblock %}
+
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <h5 style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">Hi {{ user.username }}!</h5>
+        <p style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif"><a href="{% url 'logout' %}">Log out</a></p>
+        {% if products%}
+            {% for product in products %}
+            <ul>
+                <li style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif"><b>Product Name:</b> {{product.name}}   <a href="product/detail/{{product.id}}"> Detail</a></li>
+            </ul>
+            {% endfor%}
+        {% endif %}
+    {% else %}
+        <p style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">You are not logged in!</p>
+        <button style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif"><a href="{% url 'login' %}">Login</a></button>  
+    {% endif %}
+{% endblock %}
