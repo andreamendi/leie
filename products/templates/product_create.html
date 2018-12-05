@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <h2>New Product</h2>
+    <button style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; margin: 10px"><a href="{% url 'index' %}">Home</a></button>
+
+    {%  if from.errors%}
+        {% for field in errors %}
+        <ul>
+            {% for error in field.errors %}
+                <li> {{ errors | escape }} </li>
+            {% endfor %}
+        </ul>
+        {% endfor %}
+    {% endif %}
+    <form method="POST" class="post-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Create</button>
+    </form>
+    
+{% endblock %}

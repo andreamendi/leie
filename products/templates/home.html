@@ -5,11 +5,12 @@
 
 {% block content %}
     {% if user.is_authenticated %}
-        <h5 style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">Hi {{ user.username }}!</h5>
-        <p style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif"><a href="{% url 'logout' %}">Log out</a></p>
+        <h5 style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; font-size: 20px">Hi {{ user.username }}!</h5>
+        <button style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; margin: 10px"><a href="{% url 'logout' %}">Log out</a></button>
+        <button style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif"><a href="{% url 'create_product' %}">Create</a></button>  
         {% if products%}
             {% for product in products %}
-            <ul>
+            <ul style="margin-top: 5px">
                 <li style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif"><b>Product Name:</b> {{product.name}}   <a href="product/detail/{{product.id}}"> Detail</a></li>
             </ul>
             {% endfor%}

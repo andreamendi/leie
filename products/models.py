@@ -57,7 +57,6 @@ class Product(models.Model):
 	brand = models.CharField(max_length = 50)
 	taken = models.BooleanField(null = False)
 	price = models.FloatField(default=0.01)
-	comments = models.TextField(max_length = 180, null = False)
 	user = models.ForeignKey(User, on_delete=models.CASCADE) #La FK se pone en la que no es la "dueña"
 	rents = models.ManyToManyField(User, through='Rent', related_name='rents') # Tu tienes una relación con User ManyToMany
 	categories = models.ManyToManyField(Category) 
@@ -91,6 +90,7 @@ class Rent(models.Model):
 	end_day = models.DateTimeField(auto_now = False,null = False)
 	create_at = models.DateTimeField(auto_now_add=True) #Here we've the date when the user will create the product
 	modified_at = models.DateTimeField(auto_now=True) #Here we've the date when th	te user modify the product
-	
+	commenets = models.TextField(max_length = 180, null = False)
+
 	def __str__(self):
 		return 'Owner: {}, Product: {}'.format(self.user,self.product)
