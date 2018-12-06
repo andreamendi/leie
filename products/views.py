@@ -1,8 +1,8 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from .froms import ProductForm
 from .models import Product
-
+from django.contrib import messages
 
 # Create your views here.
 
@@ -58,3 +58,12 @@ def update_product(request, product_id):
             
     else:
         return redirect('login')
+
+
+def delete_product(request, product_id):
+    if request.user.is_authenticated:
+        product = get_object_or_404(Product, pk = product_id)
+        product.delete()
+        messages.add_message(request, messages.INFO, 'Product deleted')
+        return redirect('index')
+    return redirect('login')
