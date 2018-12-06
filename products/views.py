@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from .froms import ProductForm
-from .models import Product
+from .models import Product, Category
 from django.contrib import messages
 
 # Create your views here.
@@ -11,10 +11,19 @@ def index(request):
         user = request.user
         print(user.product_set.all())
         user_product = user.product_set.all()
+        category_list = Category.objects.all()
         context = {
             'products': user_product
         }
-        return render(request, 'home.html', context)
+        context_two = {
+            'category_list' : category_list
+        }
+        return render(request, 'home.html', context,context_two)
+    category_list = Category.objects.all()
+    print(category_list)
+    context = {
+        'category_list' : category_list
+    }
     return render(request, 'home.html')
 
 def detail_product(request, product_id):
@@ -67,3 +76,4 @@ def delete_product(request, product_id):
         messages.add_message(request, messages.INFO, 'Product deleted')
         return redirect('index')
     return redirect('login')
+

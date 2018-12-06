@@ -84,6 +84,7 @@ class Card(models.Model):
 
 class Rent(models.Model):
 	user = models.ForeignKey(User, on_delete=models.CASCADE)
+
 	product = models.ForeignKey(Product, on_delete=models.CASCADE)
 	score = models.IntegerField(default = 0)
 	begin_day =  models.DateTimeField(auto_now = False,null = False)
