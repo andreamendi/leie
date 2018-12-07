@@ -84,14 +84,13 @@ class Card(models.Model):
 
 class Rent(models.Model):
 	user = models.ForeignKey(User, on_delete=models.CASCADE)
-
 	product = models.ForeignKey(Product, on_delete=models.CASCADE)
 	score = models.IntegerField(default = 0)
 	begin_day =  models.DateTimeField(auto_now = False,null = False)
 	end_day = models.DateTimeField(auto_now = False,null = False)
 	create_at = models.DateTimeField(auto_now_add=True) #Here we've the date when the user will create the product
 	modified_at = models.DateTimeField(auto_now=True) #Here we've the date when th	te user modify the product
-	commenets = models.TextField(max_length = 180, null = False)
+	comment = models.TextField(max_length = 180, null = False)
 
 	def __str__(self):
 		return 'Owner: {}, Product: {}'.format(self.user,self.product)

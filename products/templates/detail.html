@@ -16,7 +16,11 @@
         <p><b>Quality:</b> {{product.quality}}</p>
         <p><b>Brand:</b> {{product.brand}}</p>
         <p><b>Taken:</b> {{product.taken}}</p>
-        <p><b>Categories:</b> {{product.categories}}</p>
+        <p><b>Categories:</b> 
+            {% for category in categories %}
+                <li>{{ category.name }} </li>
+            {% endfor %}
+        </p>
         <p><b>Price:</b> {{product.price}}</p>
         <button style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; margin: 10px"><a href="{% url 'update_product' product.id %}">Update Product</a></button>
         <button style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; margin: 10px"><a href="{% url 'delete_product' product.id %}">Delete Product</a></button>

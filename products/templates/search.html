@@ -17,7 +17,7 @@
             {% if products%}
             <div class="card" style="width: 18rem;">
                     <div class="card-header">
-                        Your Products
+                        Our Products
                     </div>
                     {% for product in products %}
                     <ul class="list-group list-group-flush">
@@ -26,20 +26,6 @@
                     {% endfor%}
                 </div>
             {% endif %}
-
-            {% if rents%}
-            <div class="card" style="width: 18rem;">
-                    <div class="card-header">
-                        Your Rents
-                    </div>
-                    {% for rent in rents %}
-                    <ul class="list-group list-group-flush">
-                        <li style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; list-style:none; margin-top: 10px;"><b>Product Name:</b> {{rent.name}}   <a href="product/detail/{{product.id}}"> Detail</a></li>
-                    </ul>
-                    {% endfor%}
-                </div>
-            {% endif %}
-
         {% else %}
             <p style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">You are not logged in!</p>
             <button style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif"><a href="{% url 'login' %}">Login</a></button>  
@@ -49,8 +35,10 @@
                   Our categories
                 </div>
                 {% for category in categories %}
-                    <a href=""><h2  style="font-size: 10px;">{{ category.name }}</h2></a>
-                    <br>
+                    <div class="col-md-2"> 
+                        <h2 class="display-5" style="font-size: 5px;">{{ category.name }}</h2>
+                        <br>
+                    </div>  
                 {% endfor %}
             </div>
         </div>
