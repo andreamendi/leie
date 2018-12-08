@@ -23,13 +23,14 @@ def index(request):
 def detail_product(request, product_id):
     user = request.user
     product = user.product_set.get(id=product_id)
-    rents = []
-    for rents in product:
-        rents.append(product.rents.all())
-    print(rents)
+    # rents = []
+    # for rents in product:
+    #     rents.append(product.rents.all())
+    # print(rents)
     context ={
-        'product': product, 'rents': rents
+        'product': product
     }
+    # context['rents'] = rents
     return render(request, 'detail.html', context)
 
 def create_product(request):
@@ -76,3 +77,18 @@ def delete_product(request, product_id):
         return redirect('index')
     return redirect('login')
 
+
+def create_rent(request):
+    if request.user.is_authenticated:
+        form = ProductForm(request.POST or None)
+        if request.method == 'POST':
+            if form.is_valid():
+                rent = form.save(commit = False)
+                rent.user = request.user
+                rent.save()
+                form.save_m2m()
+                return redirect('index') 
+
+        return render(request, 'create_rent.html', {'form': form})
+    else:
+        return redirect('login')

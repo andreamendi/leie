@@ -14,3 +14,16 @@ class ProductForm(forms.ModelForm):
             'categories',
             'price',
             )
+
+class RentForm(forms.ModelForm):
+    class Meta:
+        model = Rent
+
+        fields = (
+            'user',
+            'product',
+            'score',
+            'begin_day',
+            'end_day',
+            'comment',
+            )

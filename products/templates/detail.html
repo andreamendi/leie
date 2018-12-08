@@ -17,7 +17,7 @@
         <p><b>Brand:</b> {{product.brand}}</p>
         <p><b>Taken:</b> {{product.taken}}</p>
         <p><b>Categories:</b> 
-            {% for category in categories %}
+            {% for category in product.categories.all %}
                 <li>{{ category.name }} </li>
             {% endfor %}
         </p>
